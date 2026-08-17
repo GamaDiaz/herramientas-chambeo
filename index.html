@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Generador QR</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="app">
+      <section class="panel">
+        <div class="panel-top">
+          <div class="panel-copy">
+            <p class="eyebrow">QR JPG</p>
+            <h1>Convierte un enlace en un QR descargable</h1>
+          </div>
+          <button
+            id="theme-toggle"
+            class="theme-toggle"
+            type="button"
+            aria-label="Cambiar tema"
+            aria-pressed="false"
+          >
+            Modo oscuro
+          </button>
+        </div>
+
+        <p class="intro">
+          Pega una URL, genera el codigo en tu navegador y descargalo como
+          imagen <code>.jpg</code>. El enlace nunca sale de tu dispositivo.
+        </p>
+
+        <form id="qr-form" class="form">
+          <label class="label" for="url-input">Enlace</label>
+          <div class="input-row">
+            <input
+              id="url-input"
+              name="url"
+              type="text"
+              inputmode="url"
+              placeholder="https://tusitio.com"
+              value="https://example.com"
+              autocomplete="off"
+              required
+            />
+            <button type="submit" class="primary">Generar</button>
+          </div>
+        </form>
+
+        <p id="status" class="status" aria-live="polite"></p>
+
+        <div class="preview">
+          <div class="qr-card">
+            <canvas
+              id="qr-canvas"
+              width="900"
+              height="900"
+              role="img"
+              aria-label="Vista previa del codigo QR"
+            ></canvas>
+          </div>
+          <button id="download-btn" class="secondary" type="button">
+            Descargar JPG
+          </button>
+        </div>
+
+        <section class="tool-section">
+          <div class="section-heading">
+            <p class="eyebrow">Comprimir JSON</p>
+            <h2>Convierte un JSON legible en una sola linea valida</h2>
+          </div>
+
+          <form id="json-form" class="json-form">
+            <label class="label" for="json-input">JSON de entrada</label>
+            <textarea
+              id="json-input"
+              name="json-input"
+              spellcheck="false"
+              autocomplete="off"
+              placeholder='{
+  "usuario": {
+    "id": 42
+  }
+}'
+            ></textarea>
+
+            <div class="json-actions">
+              <button type="submit" class="primary">Comprimir JSON</button>
+              <button id="clear-json-btn" class="secondary" type="button">
+                Limpiar campos
+              </button>
+              <button id="copy-json-btn" class="secondary" type="button">
+                Copiar resultado
+              </button>
+            </div>
+          </form>
+
+          <p id="json-status" class="status" aria-live="polite"></p>
+
+          <label class="label output-label" for="json-output">Resultado</label>
+          <textarea
+            id="json-output"
+            name="json-output"
+            readonly
+            spellcheck="false"
+          ></textarea>
+        </section>
+      </section>
+    </main>
+
+    <script src="qrcodegen.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
